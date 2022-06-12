@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" class="ud-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Baby CAW
+    </title>
+
+    <link rel="shortcut icon" href="images/babycaw2.0_nbg.png" type="image/x-icon" />
+
+    <!-- ===== CSS Files ===== -->
+    <link rel="stylesheet" href="css/glightbox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/apexcharts.css" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <!-- ===== Alpine JS ===== -->
+    <script defer src="./js/alpine.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+      // ===== wow js
+      new WOW().init();
+    </script>
+  </head>
+  <body
+    x-data="
+      {
+        scrolledFromTop: false
+      }
+    "
+    x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    class="ud-bg-white dark:ud-bg-black"
+  >
+    <!-- ===== Header start ===== -->
+    <header
+      x-data="
+        {
+          navbarOpen: false,
+          dropdownOpen: false
+        }
+      "
+      :class="scrolledFromTop ? 'ud-bg-white dark:ud-bg-dark ud-bg-opacity-80 dark:ud-bg-opacity-80 ud-shadow-sticky ud-backdrop-blur-sm ' : ' ud-bg-transparent dark:ud-bg-transparent' "
+      class="ud-top-0 ud-z-50 ud-flex ud-w-full ud-items-center ud-fixed"
+    >
+      <div class="ud-container">
+        <div
+          class="ud-relative ud--mx-4 ud-flex ud-items-center ud-justify-between"
+        >
+          <div class="ud-w-60 ud-max-w-full ud-px-4">
+            <a
+              href="index.html"
+              :class="scrolledFromTop && '!ud-py-4 lg:!ud-py-2' "
+              class="ud-block ud-w-full ud-py-6 lg:ud-py-5"
+            >
+              <img
+                src="images/logo/babycaw2.0_nbg.png"
+                alt="logo"
+                class="ud-w-full dark:ud-hidden"
+              />
+              <img
+                src="images/logo/babycaw2.0_nbg.png"
+                alt="logo"
+                class="ud-hidden ud-w-full dark:ud-block"
+              />
+            </a>
+          </div>
+          <div class="ud-flex ud-w-full ud-items-center ud-justify-end ud-px-4">
+            <div>
+              <button
+                @click="navbarOpen = !navbarOpen"
+                :class="navbarOpen && 'navbarTogglerActive' "
+                id="navbarToggler"
+                class="ud-absolute ud-right-4 ud-top-1/2 ud-block ud--translate-y-1/2 ud-rounded-lg ud-px-3 ud-py-[6px] ud-ring-primary focus:ud-ring-2 lg:ud-hidden"
+              >
+                <span
+                  :class="navbarOpen && 'ud-rotate-45 ud-top-[7px]' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+                <span
+                  :class="navbarOpen && 'ud-opacity-0' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+                <span
+                  :class="navbarOpen && 'ud-top-[-8px] ud-rotate-[135deg]' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+              </button>
+              <nav
+                :class="!navbarOpen && 'ud-hidden' "
+                id="navbarCollapse"
+                class="ud-absolute ud-right-4 ud-top-full ud-w-full ud-max-w-[250px] ud-rounded-lg ud-bg-white ud-py-4 ud-px-6 ud-shadow dark:ud-bg-black lg:ud-static lg:ud-block lg:ud-w-full lg:ud-max-w-full lg:ud-bg-transparent lg:ud-py-0 lg:ud-shadow-none dark:lg:ud-bg-transparent"
+              >
+                <ul class="ud-blcok lg:ud-flex">
+                  <li class="ud-text-body-color-2 dark:ud-text-body-color">
+                    <a
+                      href="#home"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-primary hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Home
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="#token"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Tokenomics
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="#roadmap"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Roadmap
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#team"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Team
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div
+              class="ud-flex ud-justify-end ud-pr-16 lg:ud-pr-0 xl:ud-pl-12 2xl:ud-pl-20"
+            >
+              <div class="ud-mr-4">
+                <label
+                  for="darkToggler"
+                  class="ud-flex ud-h-11 ud-w-20 ud-cursor-pointer ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg dark:ud-bg-[#1E2763]"
+                >
+                  <input
+                    type="checkbox"
+                    name="darkToggler"
+                    id="darkToggler"
+                    class="ud-sr-only"
+                    aria-label="darkToggler"
+                  />
+                  <span
+                    class="ud-flex ud-h-8 ud-w-8 ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-text-white dark:ud-bg-transparent dark:ud-text-body-color"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      class="ud-fill-current"
+                    >
+                      <path
+                        d="M4.50663 3.2267L3.30663 2.03337L2.36663 2.97337L3.55996 4.1667L4.50663 3.2267ZM2.66663 7.00003H0.666626V8.33337H2.66663V7.00003ZM8.66663 0.366699H7.33329V2.33337H8.66663V0.366699ZM13.6333 2.97337L12.6933 2.03337L11.5 3.2267L12.44 4.1667L13.6333 2.97337ZM11.4933 12.1067L12.6866 13.3067L13.6266 12.3667L12.4266 11.1734L11.4933 12.1067ZM13.3333 7.00003V8.33337H15.3333V7.00003H13.3333ZM7.99996 3.6667C5.79329 3.6667 3.99996 5.46003 3.99996 7.6667C3.99996 9.87337 5.79329 11.6667 7.99996 11.6667C10.2066 11.6667 12 9.87337 12 7.6667C12 5.46003 10.2066 3.6667 7.99996 3.6667ZM7.33329 14.9667H8.66663V13H7.33329V14.9667ZM2.36663 12.36L3.30663 13.3L4.49996 12.1L3.55996 11.16L2.36663 12.36Z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="ud-flex ud-h-8 ud-w-8 ud-items-center ud-justify-center ud-rounded-full ud-bg-transparent ud-text-body-color-2 dark:ud-bg-primary dark:ud-text-white"
+                  >
+                    <svg
+                      width="13"
+                      height="15"
+                      viewBox="0 0 13 15"
+                      class="ud-fill-current"
+                    >
+                      <path
+                        d="M10.6111 12.855C11.591 12.1394 12.3151 11.1979 12.7723 10.1623C10.4824 10.4065 8.1342 9.46314 6.67948 7.47109C5.22476 5.47905 5.04093 2.95516 5.97054 0.848179C4.84491 0.968503 3.72768 1.37162 2.74781 2.08719C-0.224105 4.25747 -0.874706 8.43084 1.29558 11.4028C3.46586 14.3747 7.63923 15.0253 10.6111 12.855Z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="ud-hidden sm:ud-flex">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ===== Header end ===== -->
+
+    <!-- ===== Hero Section start ===== -->
+    <section id="home" class="ud-relative ud-z-10 ud-pt-48 ud-pb-28">
+      <div class="ud-container">
+        <div class="ud--mx-4 ud-flex ud-flex-wrap">
+          <div class="ud-w-full ud-px-4">
+            <div class="ud-mx-auto ud-max-w-[720px] ud-text-center">
+              <h1
+                class="ud-mb-4 ud-text-3xl ud-font-bold ud-leading-tight ud-text-black dark:ud-text-white md:ud-text-[45px]"
+              >
+                Welcome to BABY CAW Token!
+              </h1>
+              <p
+                class="ud-mx-auto ud-mb-4 ud-max-w-[620px] ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-white"
+              >
+                Building Next version of A Hunters Dream CAW Token which is BabyCAW. Stealth launch and community driven token. We are establishing a new era that you will not want to miss. No rebase, No reward. We are meme token.
+              </p>
+              <br>
+
+              <a
+                href=""
+                class="ud-rounded-full ud-bg-primary ud-py-3 ud-px-8 ud-text-base ud-font-semibold ud-text-white hover:ud-bg-opacity-90 dark:hover:bg-opacity-90"
+              >
+                Buy on PancakeSwap
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="ud-absolute ud-top-0 ud-left-0 ud--z-10 ud-h-full ud-w-full ud-opacity-20"
+        style="
+        background-color: Green;
+          background-image:
+            linear-gradient(
+              green, #002e00
+            );
+        "
+      ></div>
+      <img
+        src="images/shapes/hero-shape-1.svg"
+        alt=""
+        class="ud-absolute ud-left-0 ud-top-0 ud--z-10"
+      />
+      <!-- <img
+        src="images/shapes/hero-shape-2.svg"
+        alt=""
+        class="ud-absolute ud-right-0 ud-top-0 ud--z-10"
+      /> -->
+    </section>
+    <!-- ===== Hero Section end ===== -->
+
+    <!-- ===== Brands Section start ===== -->
+    <section>
+      <div class="ud-container">
+        <div
+          class="wow fadeInUp ud-border-y ud-border-[#F3F4F4] ud-pt-10 dark:ud-border-[#2D2C4A]"
+          data-wow-delay="0s"
+        >
+          <h2
+            class="ud-mb-10 ud-text-center ud-text-lg ud-font-bold ud-text-black dark:ud-text-white sm:ud-text-2xl"
+          >
+            Join Our Growing Community!
+          </h2>
+
+          <div
+            class="ud--mx-4 ud-flex ud-flex-wrap ud-items-center ud-justify-center"
+          >
+            <div class="ud-px-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="nofollow noopenner"
+                class="ud-mb-10 ud-flex ud-max-w-[170px] ud-justify-center ud-opacity-70 ud-grayscale hover:ud-opacity-100 hover:ud-grayscale-0 dark:hover:ud-opacity-100"
+              >
+                <img
+                  src="images/brands/uideck-white.svg"
+                  alt="uideck"
+                  class="ud-mx-auto ud-hidden ud-h-10 ud-text-center dark:ud-block"
+                />
+                <img
+                  src="images/brands/uideck.svg"
+                  alt="uideck"
+                  class="ud-mx-auto ud-h-10 ud-text-center dark:ud-hidden"
+                />
+              </a>
+            </div>
+            <div class="ud-px-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="nofollow noopenner"
+                class="ud-mb-10 ud-flex ud-max-w-[170px] ud-justify-center ud-opacity-70 ud-grayscale hover:ud-opacity-100 hover:ud-grayscale-0 dark:hover:ud-opacity-100"
+              >
+                <img
+                  src="images/brands/TailGrids-white.svg"
+                  alt="tailgrids"
+                  class="ud-mx-auto ud-hidden ud-h-10 ud-text-center dark:ud-block"
+                />
+                <img
+                  src="images/brands/tailgrids.svg"
+                  alt="tailgrids"
+                  class="ud-mx-auto ud-h-10 ud-text-center dark:ud-hidden"
+                />
+              </a>
+            </div>
+            <div class="ud-px-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="nofollow noopenner"
+                class="ud-mb-10 ud-flex ud-max-w-[170px] ud-justify-center ud-opacity-70 ud-grayscale hover:ud-opacity-100 hover:ud-grayscale-0 dark:hover:ud-opacity-100"
+              >
+                <img
+                  src="images/brands/LineIcons-white.svg"
+                  alt="lineicons"
+                  class="ud-mx-auto ud-hidden ud-h-10 ud-text-center dark:ud-block"
+                />
+                <img
+                  src="images/brands/lineicons.svg"
+                  alt="lineicons"
+                  class="ud-mx-auto ud-h-10 ud-text-center dark:ud-hidden"
+                />
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Brands Section end ===== -->
+
+    <!-- ===== Features Section start ===== -->
+    <section id="features" class="ud-pt-[120px] ud-pb-16">
+      <div class="ud-container">
+        <div
+          class="wow fadeInUp ud-mx-auto ud-mb-16 ud-max-w-[590px] ud-text-center md:ud-mb-20"
+          data-wow-delay="0s"
+        >
+          <span
+            class="ud-mb-3 ud-text-lg ud-font-bold ud-uppercase ud-text-primary sm:ud-text-xl"
+          >
+
+          </span>
+          <h2
+            class="ud-mb-3 ud-text-3xl ud-font-bold ud-leading-tight ud-text-black dark:ud-text-white md:ud-text-[45px]"
+          >
+            BABYCAW Project Features
+          </h2>
+          <p
+            class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+          >
+          </p>
+        </div>
+
+        <div class="ud--mx-4 ud-flex ud-flex-wrap" style="display: flex; justify-content: center;">
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-1/3">
+            <div
+              class="wow fadeInUp ud-mx-auto ud-mb-14 ud-max-w-[370px] ud-text-center"
+              data-wow-delay="0s"
+            >
+              <div
+                class="ud-mx-auto ud-mb-7 ud-flex ud-h-20 ud-w-20 ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-text-white"
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20 1.66675L5 8.33341V18.3334C5 27.5834 11.4 36.2334 20 38.3334C28.6 36.2334 35 27.5834 35 18.3334V8.33341L20 1.66675ZM20 19.9834H31.6667C30.7833 26.8501 26.2 32.9667 20 34.8834V20.0001H8.33333V10.5001L20 5.31675V19.9834Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <h3
+                  class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white sm:ud-text-3xl lg:ud-text-xl xl:ud-text-3xl"
+                >
+                  Safe & Secure
+                </h3>
+
+                <p
+                  class="ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color sm:ud-text-lg lg:ud-text-base xl:ud-text-lg"
+                >
+                 Locked LP | Anti Bots and Rug Contract, extremely safe contract
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-1/3">
+            <div
+              class="wow fadeInUp ud-mx-auto ud-mb-14 ud-max-w-[370px] ud-text-center"
+              data-wow-delay="0s"
+            >
+              <div
+                class="ud-mx-auto ud-mb-7 ud-flex ud-h-20 ud-w-20 ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-text-white"
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M33.3333 9.99992H29.6999C29.8833 9.48325 29.9999 8.91658 29.9999 8.33325C29.9999 5.56659 27.7666 3.33325 24.9999 3.33325C23.2499 3.33325 21.7333 4.23325 20.8333 5.58325L19.9999 6.69992L19.1666 5.56659C18.2666 4.23325 16.7499 3.33325 14.9999 3.33325C12.2333 3.33325 9.99992 5.56659 9.99992 8.33325C9.99992 8.91658 10.1166 9.48325 10.2999 9.99992H6.66659C4.81659 9.99992 3.34992 11.4833 3.34992 13.3333L3.33325 31.6666C3.33325 33.5166 4.81659 34.9999 6.66659 34.9999H33.3333C35.1833 34.9999 36.6666 33.5166 36.6666 31.6666V13.3333C36.6666 11.4833 35.1833 9.99992 33.3333 9.99992ZM24.9999 6.66659C25.9166 6.66659 26.6666 7.41658 26.6666 8.33325C26.6666 9.24992 25.9166 9.99992 24.9999 9.99992C24.0833 9.99992 23.3333 9.24992 23.3333 8.33325C23.3333 7.41658 24.0833 6.66659 24.9999 6.66659ZM14.9999 6.66659C15.9166 6.66659 16.6666 7.41658 16.6666 8.33325C16.6666 9.24992 15.9166 9.99992 14.9999 9.99992C14.0833 9.99992 13.3333 9.24992 13.3333 8.33325C13.3333 7.41658 14.0833 6.66659 14.9999 6.66659ZM33.3333 31.6666H6.66659V28.3333H33.3333V31.6666ZM33.3333 23.3333H6.66659V13.3333H15.1333L11.6666 18.0499L14.3666 19.9999L18.3333 14.5999L19.9999 12.3333L21.6666 14.5999L25.6333 19.9999L28.3333 18.0499L24.8666 13.3333H33.3333V23.3333Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <h3
+                  class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white sm:ud-text-3xl lg:ud-text-xl xl:ud-text-3xl"
+                >
+                Low Marketcap
+                </h3>
+
+                <p
+                  class="ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color sm:ud-text-lg lg:ud-text-base xl:ud-text-lg"
+                >
+                This coin has a huge potential with a microcap of 100k $
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-1/3">
+            <div
+              class="wow fadeInUp ud-mx-auto ud-mb-14 ud-max-w-[370px] ud-text-center"
+              data-wow-delay="0s"
+            >
+              <div
+                class="ud-mx-auto ud-mb-7 ud-flex ud-h-20 ud-w-20 ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-text-white"
+              >
+               
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 24.9999H18.3333V21.6666H5V24.9999ZM5 31.6666H18.3333V28.3333H5V31.6666ZM5 18.3333H18.3333V14.9999H5V18.3333ZM5 8.33325V11.6666H18.3333V8.33325H5ZM21.6667 8.33325H35V31.6666H21.6667V8.33325Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <h3
+                  class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white sm:ud-text-3xl lg:ud-text-xl xl:ud-text-3xl"
+                >
+                Fast Growing Community
+
+                </h3>
+
+                <p
+                  class="ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color sm:ud-text-lg lg:ud-text-base xl:ud-text-lg"
+                >
+                +2K members of a great community with a lot of support and an amazing attitude
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-1/3">
+            <div
+              class="wow fadeInUp ud-mx-auto ud-mb-14 ud-max-w-[370px] ud-text-center"
+              data-wow-delay="0s"
+            >
+           
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Features Section end ===== -->
+
+    <!-- ===== Token Section start ===== -->
+    <section id="token" class="ud-relative ud-z-10">
+      <div class="ud-container">
+        <div
+          class="ud-rounded-lg ud-bg-light-bg ud-py-12 ud-px-8 dark:ud-bg-[#14102C] sm:ud-py-16 sm:ud-px-14 lg:ud-px-8 xl:ud-px-14"
+        >
+          <div class="ud--mx-4 ud-flex ud-flex-wrap ud-items-center">
+            <div class="ud-w-full ud-px-4 lg:ud-w-1/2">
+              <div class="wow fadeInUp ud-mb-9" data-wow-delay="0s">
+                <span
+                  class="ud-mb-3 ud-text-lg ud-font-bold ud-uppercase ud-text-primary sm:ud-text-xl"
+                >
+
+                </span>
+                <h2
+                  class="ud-mb-3 ud-text-3xl ud-font-bold ud-leading-tight ud-text-black dark:ud-text-white md:ud-text-[45px]"
+                >
+                  Current Distribution of Tokens
+                </h2>
+                <p
+                  class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                >
+                Supply: 1.000.000.000 (1% Max Tax / 2% Max Wallet)
+              
+                </p>
+              </div>
+              <div class="wow fadeInUp ud-space-y-4" data-wow-delay="0s">
+                <p class="ud-flex">
+                  <span
+                    class="ud-mr-4 ud-h-6 ud-w-6 ud-rounded-full ud-bg-primary"
+                  ></span>
+                  <span
+                    class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    9% Buy / Sell Fee
+                  </span>
+                </p>
+                <p class="ud-flex">
+                  <span
+                    class="ud-mr-4 ud-h-6 ud-w-6 ud-rounded-full ud-bg-[#2347B9]"
+                  ></span>
+                  <span
+                    class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    3% Marketing
+                  </span>
+                </p>
+                <p class="ud-flex">
+                  <span
+                    class="ud-mr-4 ud-h-6 ud-w-6 ud-rounded-full ud-bg-[#8BA6FF]"
+                  ></span>
+                  <span
+                    class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    3% LP
+                  </span>
+                </p>
+                <p class="ud-flex">
+                  <span
+                    class="ud-mr-4 ud-h-6 ud-w-6 ud-rounded-full ud-bg-[#8696CA]"
+                  ></span>
+                  <span
+                    class="ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    3% Development
+                  </span>
+                </p>
+              </div>
+            </div>
+              <img style="height: 500px;width: 500px;" src="images/babycaw2.0_nbg.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="ud-absolute ud-right-0 ud--top-32 ud--z-10">
+        <img src="images/shapes/token-sale-shape.svg" alt="shape" />
+      </div>
+    </section>
+    <!-- ===== Token Section end ===== -->
+
+    <!-- ===== Roadmap Section start ===== -->
+    <section id="roadmap" class="ud-relative ud-z-10 ud-py-[120px]">
+      <div class="ud-container">
+        <div
+          class="wow fadeInUp ud-mx-auto ud-mb-16 ud-max-w-[590px] ud-text-center md:ud-mb-20"
+          data-wow-delay="0s"
+        >
+          <span
+            class="ud-mb-3 ud-text-lg ud-font-bold ud-uppercase ud-text-primary sm:ud-text-xl"
+          >
+
+          </span>
+          <h2
+            class="ud-mb-3 ud-text-3xl ud-font-bold ud-leading-tight ud-text-black dark:ud-text-white md:ud-text-[45px]"
+          >
+            ROADMAP
+          </h2>
+        </div>
+
+        <div class="ud--mx-4 ud-flex ud-justify-center">
+          <div class="ud-w-full ud-px-4 lg:ud-w-10/12 xl:ud-w-9/12">
+            <div
+              class="wow fadeInUp ud-relative ud--mx-4 ud-flex ud-flex-wrap md:ud-py-14 lg:ud-py-20"
+              data-wow-delay="0s"
+            >
+              <span
+                class="ud-absolute ud-top-0 ud-left-2 ud-hidden ud-h-full ud-w-[2px] ud-bg-light-bg dark:ud-bg-[#2D2C4A] md:ud-left-1/2 md:ud-block"
+              ></span>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2">
+                <div
+                  class="ud-relative ud-z-10 ud-mb-10 ud-rounded-lg ud-bg-light-bg ud-py-8 ud-px-6 dark:ud-bg-dark md:ud-mr-3 md:ud-mb-0 md:ud-text-right lg:ud-mr-5"
+                >
+                  <span
+                    class="ud-absolute ud-top-1/2 ud-left-0 ud-hidden ud-h-4 ud-w-4 ud--translate-y-1/2 ud-rounded-full ud-border-4 ud-border-primary ud-bg-white dark:ud-border-body-color md:ud-left-auto md:ud--right-9 md:ud-block lg:ud--right-11"
+                  ></span>
+                  <span
+                    class="ud-absolute ud--right-1 ud-top-1/2 ud-hidden ud-h-3 ud-w-3 ud--translate-y-1/2 ud-rotate-45 ud-bg-light-bg dark:ud-bg-dark md:ud-block"
+                  ></span>
+                  <h3
+                    class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white"
+                  >
+                    PHASE 1
+                  </h3>
+                  <p
+                    class="ud-mb-5 ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    - Marketing
+                    <br>
+                    - Website update
+                    <br>
+                    - Twitter update
+                    <br>
+
+                  </p>
+
+                </div>
+              </div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2"></div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2"></div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2">
+                <div
+                  class="ud-relative ud-z-10 ud-mb-10 ud-rounded-lg ud-bg-light-bg ud-py-8 ud-px-6 dark:ud-bg-dark md:ud-ml-3 md:ud-mb-0 lg:ud-ml-5"
+                >
+                  <span
+                    class="ud-absolute ud-top-1/2 ud-left-0 ud-hidden ud-h-4 ud-w-4 ud--translate-y-1/2 ud-rounded-full ud-border-4 ud-border-primary ud-bg-white dark:ud-border-body-color md:ud-right-auto md:ud--left-9 md:ud-block lg:ud--left-11"
+                  ></span>
+                  <span
+                    class="ud-absolute ud--left-1 ud-top-1/2 ud-hidden ud-h-3 ud-w-3 ud--translate-y-1/2 ud-rotate-45 ud-bg-light-bg dark:ud-bg-dark md:ud-block"
+                  ></span>
+                  <h3
+                    class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white"
+                  >
+                    PHASE 2
+                  </h3>
+                  <p
+                    class="ud-mb-5 ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                  - CoinHunt
+                  <br>
+                  - CoinMooner
+                  <br>
+                  - CoinSniper
+                  <br>
+                  - Advertising campaigns targeting large community
+
+                  </p>
+
+                </div>
+              </div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2">
+                <div
+                  class="ud-relative ud-z-10 ud-mb-10 ud-rounded-lg ud-bg-light-bg ud-py-8 ud-px-6 dark:ud-bg-dark md:ud-mr-3 md:ud-mb-0 md:ud-text-right lg:ud-mr-5"
+                >
+                  <span
+                    class="ud-absolute ud-top-1/2 ud-left-0 ud-hidden ud-h-4 ud-w-4 ud--translate-y-1/2 ud-rounded-full ud-border-4 ud-border-primary ud-bg-white dark:ud-border-body-color md:ud-left-auto md:ud--right-9 md:ud-block lg:ud--right-11"
+                  ></span>
+                  <span
+                    class="ud-absolute ud--right-1 ud-top-1/2 ud-hidden ud-h-3 ud-w-3 ud--translate-y-1/2 ud-rotate-45 ud-bg-light-bg dark:ud-bg-dark md:ud-block"
+                  ></span>
+                  <h3
+                    class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white"
+                  >
+                    PHASE 3
+                  </h3>
+                  <p
+                    class="ud-mb-5 ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    - Massive Marketing
+                    <br>
+                    - Influencers Marketings
+                    <br>
+                    - Burn
+                  </p>
+
+                </div>
+              </div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2"></div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2"></div>
+              <div class="ud-w-full ud-px-4 md:ud-w-1/2">
+                <div
+                  class="ud-relative ud-z-10 ud-mb-10 ud-rounded-lg ud-bg-light-bg ud-py-8 ud-px-6 dark:ud-bg-dark md:ud-ml-3 md:ud-mb-0 lg:ud-ml-5"
+                >
+                  <span
+                    class="ud-absolute ud-top-1/2 ud-left-0 ud-hidden ud-h-4 ud-w-4 ud--translate-y-1/2 ud-rounded-full ud-border-4 ud-border-primary ud-bg-white dark:ud-border-body-color md:ud-right-auto md:ud--left-9 md:ud-block lg:ud--left-11"
+                  ></span>
+                  <span
+                    class="ud-absolute ud--left-1 ud-top-1/2 ud-hidden ud-h-3 ud-w-3 ud--translate-y-1/2 ud-rotate-45 ud-bg-light-bg dark:ud-bg-dark md:ud-block"
+                  ></span>
+                  <h3
+                    class="ud-mb-3 ud-text-xl ud-font-bold ud-text-black dark:ud-text-white"
+                  >
+                    PHASE 4
+                  </h3>
+                  <p
+                    class="ud-mb-5 ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    - CMC + Coingecko listing
+                    <br>
+                    - More Update Coming..
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ud-absolute ud-left-0 ud-bottom-0 ud--z-10">
+        <img src="images/shapes/timeline.svg" alt="shape" />
+      </div>
+    </section>
+    <!-- ===== Roadmap Section end ===== -->
+
+
+    <!-- ===== Download Section start ===== -->
+    <!-- <section id="download" class="ud-border-t ud-border-[#F3F4F4] ud-pt-[120px] ud-pb-20 dark:ud-border-[#2D2C4A]">
+      <div class="ud-container">
+        <div class="ud--mx-4 ud-flex ud-flex-wrap ud-items-center">
+          <div class="ud-w-full ud-px-4 lg:ud-w-1/2">
+            <div
+              class="wow fadeInUp ud-mb-12 ud-max-w-[500px] lg:ud-mb-0"
+              data-wow-delay="0s"
+            >
+              <span
+                class="ud-mb-3 ud-text-lg ud-font-bold ud-uppercase ud-text-primary sm:ud-text-xl"
+              >
+
+              </span>
+              <h2
+                class="ud-mb-3 ud-text-3xl ud-font-bold ud-leading-tight ud-text-black dark:ud-text-white md:ud-text-[45px]"
+              >
+                Download Our P2E Game!
+              </h2>
+              <p
+                class="ud-mb-10 ud-text-lg ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+              >
+                Download our P2E Game to participate in special weekly contests!
+
+              </p>
+
+              <div class="ud--mx-3 ud-flex ud-items-center">
+
+                <div class="ud-px-3">
+                  <a
+                    href="javascript:void(0)"
+                    class="ud-flex ud-items-center ud-justify-center ud-rounded-full ud-border ud-border-[#2D2947] ud-bg-transparent ud-p-[10px] ud-pr-5 ud-text-base ud-font-semibold ud-text-body-color-2 hover:ud-bg-[#2D294710] dark:ud-text-white dark:hover:ud-bg-[#2D2947]"
+                  >
+                    <span
+                      class="ud-mr-3 ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-full ud-bg-dark ud-text-white dark:ud-bg-white dark:ud-text-dark"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        class="ud-fill-current"
+                      >
+                        <path
+                          d="M3 20.5V3.50002C3 2.91002 3.34 2.39002 3.84 2.15002L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.50002L20.16 10.81ZM6.05 2.66002L16.81 8.88002L14.54 11.15L6.05 2.66002Z"
+                        />
+                      </svg>
+                    </span>
+                    Play Store
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ud-w-full ud-px-4 lg:ud-w-1/2">
+            <div
+              class="wow fadeInUp ud-relative -ud-z-10 ud-text-center"
+              data-wow-delay="0s"
+            >
+              <img
+                src="images/download/app-image.png"
+                alt="app image"
+                class="ud-mx-auto ud-hidden dark:ud-block ud-text-center"
+              />
+              <img
+                src="images/download/app-image-2.png"
+                alt="app image"
+                class="ud-mx-auto dark:ud-hidden"
+              />
+
+              <span
+                class="ud-absolute ud-right-0 ud-bottom-0 ud-w-[320px] ud-h-[320px] ud-rounded-full ud--z-10"
+                style="
+                  background: linear-gradient(
+                    180deg,
+                    rgba(55, 109, 249, 0) 0%,
+                    rgba(255, 96, 166, 0.32) 100%
+                  );
+                  filter: blur(100px);
+                "
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- ===== Download Section end ===== -->
+
+
+
+    <!-- ===== Footer start ===== -->
+
+
+        <div
+          class="wow fadeInUp ud-border-t ud-border-[#F3F4F4] ud-py-7 ud-text-center dark:ud-border-[#2D2C4A]"
+          data-wow-delay="0s"
+        >
+          <p
+            class="ud-text-base ud-font-medium ud-leading-loose ud-text-body-color-2 dark:ud-text-body-color"
+          >
+            ©2022 BABYCAW - all Rights Reserved
+          </p>
+        </div>
+
+      <div class="ud-absolute ud-top-0 ud-left-0 ud--z-10">
+        <img src="images/shapes/footer-shape-2.svg" alt="shape" />
+      </div>
+
+      <div class="ud-absolute ud-bottom-0 ud-right-0 ud--z-10">
+        <img src="images/shapes/footer-shape-1.svg" alt="shape" />
+      </div>
+    </footer>
+    <!-- ===== Footer end ===== -->
+
+    <!-- ====== Back To Top Start -->
+    <a
+      x-show="scrolledFromTop"
+      href="javascript:void(0)"
+      name="scrollToTop"
+      aria-label="scrollToTop"
+      class="hover:ud-shadow-signUp back-to-top ud-fixed ud-bottom-8 ud-right-8 ud-left-auto ud-z-[999] ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-lg ud-bg-primary ud-text-white ud-shadow-md ud-transition"
+    >
+      <span
+        class="ud-mt-[6px] ud-h-3 ud-w-3 ud-rotate-45 ud-border-t ud-border-l ud-border-white"
+      ></span>
+    </a>
+    <!-- ====== Back To Top End -->
+
+    <!-- ===== JS Files ====== -->
+    <script src="js/apexcharts.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".scroll-menu");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".scroll-menu");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".scroll-menu")
+              .classList.remove("dark:ud-text-white", "ud-text-primary");
+            currLink.classList.add("dark:ud-text-white", "ud-text-primary");
+          } else {
+            currLink.classList.remove("dark:ud-text-white", "ud-text-primary");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+
+      // ====
+      var options = {
+        series: [73, 55, 38, 20],
+        chart: {
+          type: "donut",
+          width: 400,
+        },
+        colors: ["#2347B9", "#3363FF", "#8BA6FF", "#8696CA"],
+        legend: {
+          show: false,
+        },
+        stroke: {
+          show: false,
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
+              legend: {
+                position: "bottom",
+              },
+            },
+          },
+        ],
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    </script>
+  </body>
+</html>
